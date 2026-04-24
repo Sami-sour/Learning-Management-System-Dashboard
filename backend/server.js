@@ -10,10 +10,10 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-app.use("/api/users",   require("./routes/userRoutes"));
-app.use("/api/courses", require("./routes/courseRoutes"));
-app.use("/api/payments",require("./routes/paymentRoutes"));
-app.use("/api/coupons", require("./routes/couponRoutes"));
+app.use("/users",   require("./routes/userRoutes"));
+app.use("/courses", require("./routes/courseRoutes"));
+app.use("/payments",require("./routes/paymentRoutes"));
+app.use("/coupons", require("./routes/couponRoutes"));
 
 // Root
 app.get("/", (req, res) => res.json({ message: "LMS API Running" }));
