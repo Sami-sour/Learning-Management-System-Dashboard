@@ -14,6 +14,7 @@ export default function Login() {
     setError("");
     try {
       const { data } = await API.post("/users/login", form);
+      console.log(data)
       login(data);
       navigate("/");
     } catch (err) {
