@@ -75,13 +75,13 @@ export default function Payments() {
             {users.map((u) => <option key={u._id} value={u._id} className="text-white bg-gray-600">{u.name}</option>)}
             
           </select>
-          <select className="border border-gray-500 bg-gray-950 text-gray-400 rounded-xl px-3 py-2 text-sm" value={form.course}
+          <select className="border bg-gray-950 text-gray-400 rounded-xl px-3 py-2 text-sm" value={form.course}
             onChange={(e) => {
               const c = courses.find((x) => x._id === e.target.value);
               setForm({ ...form, course: e.target.value, amount: c?.price || "" });
             }} required>
-            <option value="">Select Course</option>
-            {courses.map((c) => <option key={c._id} value={c._id}>{c.title} — ₹{c.price}</option>)}
+            <option value="" className="bg-gray-950">Select Course</option>
+            {courses.map((c) => <option key={c._id} value={c._id}>{c.title} - ₹{c.price}</option>)}
           </select>
           <input className="border border-gray-500 text-gray-400 rounded-xl px-3 py-2 text-sm" placeholder="Amount (₹)" type="number"
             value={form.amount} onChange={(e) => setForm({ ...form, amount: e.target.value })} required />
