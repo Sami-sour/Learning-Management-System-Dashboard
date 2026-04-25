@@ -18,6 +18,7 @@ export default function Login() {
       login(data);
       navigate("/");
     } catch (err) {
+      console.log("ERROR:", err);   // 👈 ADD THIS
       setError(err.response?.data?.message || "Login failed");
     }
   };

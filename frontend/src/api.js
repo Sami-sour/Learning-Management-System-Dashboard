@@ -4,6 +4,7 @@ const API = axios.create({ baseURL: import.meta.env.VITE_API_URL ||  "http://loc
 
 API.interceptors.request.use((req) => {
   const user = localStorage.getItem("lms_user");
+  console.log(user)
   if (user) {
     const parsedUser = JSON.parse(user);
 
