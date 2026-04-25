@@ -5,15 +5,30 @@ require("dotenv").config();
 
 const app = express();
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://learning-managment-system-app.netlify.app/"
+];
+
+app.use(cors({
+  origin: function(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true
+}));
+
 // Middleware
-app.use(cors());
 app.use(express.json());
 
 // Routes
-app.use("/users",   require("./routes/userRoutes"));
-app.use("/courses", require("./routes/courseRoutes"));
-app.use("/payments",require("./routes/paymentRoutes"));
-app.use("/coupons", require("./routes/couponRoutes"));
+app.use("/api/users",   require("./routes/userRoutes"));
+app.use("/api/courses", require("./routes/courseRoutes"));
+app.use("/api/payments",require("./routes/paymentRoutes"));
+app.use("/api/coupons", require("./routes/couponRoutes"));
 
 // Root
 app.get("/", (req, res) => res.json({ message: "LMS API Running" }));
