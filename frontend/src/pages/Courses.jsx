@@ -14,7 +14,7 @@ export default function Courses() {
   const [error, setError]     = useState("");
 
   const fetchCourses = async () => {
-    const { data } = await API.get("/courses");
+    const { data } = await API.get("/api/courses");
     setCourses(data);
   };
 
@@ -25,10 +25,10 @@ export default function Courses() {
     setError("");
     try {
       if (editing) {
-        await API.put(`/courses/${editing}`, form);
+        await API.put(`/api/courses/${editing}`, form);
         setEditing(null);
       } else {
-        await API.post("/courses", form);
+        await API.post("/api/courses", form);
       }
       setForm(empty);
       setShowForm(false);
@@ -46,7 +46,7 @@ export default function Courses() {
 
   const handleDelete = async (id) => {
     if (!window.confirm("Delete this course?")) return;
-    await API.delete(`/courses/${id}`);
+    await API.delete(`/api/courses/${id}`);
     fetchCourses();
   };
 

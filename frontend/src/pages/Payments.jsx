@@ -16,7 +16,7 @@ export default function Payments() {
   const fetchAll = async () => {
     try {
       
-    const [p, u, c] = await Promise.all([API.get("/payments"), API.get("/users"), API.get("/courses")]);
+    const [p, u, c] = await Promise.all([API.get("/api/payments"), API.get("/api/users"), API.get("/api/courses")]);
     console.log("Users", u.data)
     setPayments(p.data); setUsers(u.data); setCourses(c.data);
     } catch(err) {
@@ -30,7 +30,7 @@ export default function Payments() {
     e.preventDefault();
     setMessage("");
     try {
-      await API.post("/payments", form);
+      await API.post("/api/payments", form);
       setForm(empty);
       setShowForm(false);
       setMessage("Payment recorded successfully!");
@@ -42,7 +42,7 @@ export default function Payments() {
 
   const handleDelete = async (id) => {
     if (!window.confirm("Delete this payment record?")) return;
-    await API.delete(`/payments/${id}`);
+    await API.delete(`/api/payments/${id}`);
     fetchAll();
   };
 

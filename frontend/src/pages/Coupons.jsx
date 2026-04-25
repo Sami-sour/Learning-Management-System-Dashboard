@@ -12,7 +12,7 @@ export default function Coupons() {
   const [error, setError]     = useState("");
 
   const fetchCoupons = async () => {
-    const { data } = await API.get("/coupons");
+    const { data } = await API.get("/api/coupons");
     setCoupons(data);
   };
 
@@ -22,7 +22,7 @@ export default function Coupons() {
     e.preventDefault();
     setError("");
     try {
-      await API.post("/coupons", form);
+      await API.post("/api/coupons", form);
       setForm(empty);
       setShowForm(false);
       fetchCoupons();
@@ -32,13 +32,13 @@ export default function Coupons() {
   };
 
   const toggleActive = async (c) => {
-    await API.put(`/coupons/${c._id}`, { isActive: !c.isActive });
+    await API.put(`/api/coupons/${c._id}`, { isActive: !c.isActive });
     fetchCoupons();
   };
 
   const handleDelete = async (id) => {
     if (!window.confirm("Delete this coupon?")) return;
-    await API.delete(`/coupons/${id}`);
+    await API.delete(`/api/coupons/${id}`);
     fetchCoupons();
   };
 

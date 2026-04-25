@@ -10,7 +10,7 @@ export default function Users() {
 
   const fetchUsers = async () => {
     try {
-      const { data } = await API.get("/users");
+      const { data } = await API.get("/api/users");
       setUsers(data);
     } catch {
       setError("Failed to load users");
@@ -21,7 +21,7 @@ export default function Users() {
 
   const handleDelete = async (id) => {
     if (!window.confirm("Delete this user?")) return;
-    await API.delete(`/users/${id}`);
+    await API.delete(`/api/users/${id}`);
     fetchUsers();
   };
 

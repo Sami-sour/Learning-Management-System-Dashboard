@@ -13,7 +13,7 @@ export default function Login() {
     e.preventDefault();
     setError("");
     try {
-      const { data } = await API.post("/users/login", form);
+      const { data } = await API.post("/api/users/login", form);
       console.log(data)
       login(data);
       navigate("/");
