@@ -9,8 +9,8 @@ export function AuthProvider({ children }) {
   });
 
   const login = (userData) => {
-    setUser(userData);
     localStorage.setItem("lms_user", JSON.stringify(userData));
+    setUser(userData);
   };
 
   const logout = () => {
